@@ -1,0 +1,305 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin_Admin" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Sahayog Admin Dashboard</title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
+    <!-- Google Fonts & Remix Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <style>
+        /* === GLOBAL STYLES === */
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f3f5f9;
+            height: 100%;
+            overflow-x: hidden;
+        }
+         .admin-title,
+    .admin-title * {
+        color: #ffffff !important;
+    }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        /* === SIDEBAR === */
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #001f4d, #0055cc);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+            transition: width 0.3s ease, transform 0.3s ease;
+            z-index: 200;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            padding: 25px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-header img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            border: 2px solid #fff;
+        }
+
+        .sidebar-header h2 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        #Menu1 {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        #Menu1 a {
+            display: flex;
+            align-items: center;
+            color: #dbe9ff !important;
+            padding: 14px 25px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        #Menu1 a:hover {
+            background: #ff4081;
+            color: #fff !important;
+            transform: translateX(6px);
+            border-radius: 10px 0 0 10px;
+        }
+
+        #Menu1 i {
+            font-size: 20px;
+            margin-right: 12px;
+        }
+
+        /* === NAVBAR === */
+        .navbar {
+            background: #ffffff;
+            padding: 12px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 150;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .navbar-left h2 {
+            margin: 0;
+            font-size: 22px;
+            color: #003366;
+        }
+
+        .menu-toggle {
+            font-size: 26px;
+            color: #003366;
+            cursor: pointer;
+            display: none;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar-right a, .navbar-right i {
+            font-size: 22px;
+            color: #003366;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .navbar-right a:hover i, .navbar-right i:hover {
+            color: #ff4081;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+            background: #f0f4ff;
+            padding: 5px 10px;
+            border-radius: 30px;
+            border: 1px solid #d0d9ff;
+        }
+
+        .profile-info img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* === MAIN CONTENT === */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-area {
+            padding: 25px;
+            background: #f3f5f9;
+        }
+
+        #ContentPlaceHolder1 {
+            background: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .footer {
+            background: linear-gradient(90deg, #001f4d, #004080);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .sidebar {
+                position: fixed;
+                height: 100%;
+                top: 0;
+                left: -260px;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+                left: 0;
+            }
+
+            .dashboard {
+                flex-direction: column;
+            }
+
+            .content-area {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar-left h2 {
+                font-size: 18px;
+            }
+
+            .profile-info span {
+                display: none;
+            }
+
+            .profile-info img {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div class="dashboard">
+            <!-- SIDEBAR -->
+            <div class="sidebar" id="sidebar">
+                <div>
+                    <div class="sidebar-header">
+                        <img src="~/Images/bachat.png" alt="Admin Logo" />
+                        <h1 class="admin-title">Sahayog Admin</h1>
+
+                    </div>
+
+                    <asp:Menu ID="Menu1" runat="server" Orientation="Vertical" RenderingMode="List">
+                        <Items>
+                            <asp:MenuItem Text="<i class='ri-dashboard-fill'></i>Dashboard" NavigateUrl="~/Admin/AdminHome.aspx" />
+                            <asp:MenuItem Text="<i class='ri-group-fill'></i>Manage Bachatgat" NavigateUrl="~/Admin/ManageBachatgat.aspx" />
+                            <asp:MenuItem Text="<i class='ri-user-settings-fill'></i>Manage Admin" NavigateUrl="~/Admin/ManageAdmin.aspx" />
+                            <asp:MenuItem Text="<i class='ri-file-chart-fill'></i>Post Events" NavigateUrl="~/Admin/Post Event.aspx" />
+                            <asp:MenuItem Text="<i class='ri-mail-fill'></i>Feedbacks" NavigateUrl="~/Admin/Feedback.aspx" />
+                            <asp:MenuItem Text="<i class='ri-settings-3-fill'></i>Workdesk" NavigateUrl="~/Admin/Workdesk.aspx" />
+                            <asp:MenuItem Text="<i class='ri-logout-box-r-fill'></i>Logout" NavigateUrl="~/Admin/Logout.aspx" />
+                        </Items>
+                    </asp:Menu>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="main-content">
+                <!-- NAVBAR -->
+                <div class="navbar">
+                    <div class="navbar-left">
+                        <i class="ri-menu-line menu-toggle" id="menuToggle"></i>
+                        <h2>Admin Dashboard</h2>
+                    </div>
+
+                    <div class="navbar-right">
+                       
+
+                        <div class="profile-info">
+                            <img src="~/Images/admin-profile.jpg" alt="Admin" />
+                            <span><%= Session["AdminUser"] ?? "Admin" %></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE CONTENT -->
+                <div class="content-area">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                </div>
+
+                <!-- FOOTER -->
+                <div class="footer">
+                    © 2025 Sahayog | Designed by <b>Shraddha Yewale</b>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Sidebar Toggle Script -->
+    <script>
+        const toggle = document.getElementById("menuToggle");
+        const sidebar = document.getElementById("sidebar");
+
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("active");
+        });
+    </script>
+</body>
+</html>

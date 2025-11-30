@@ -1,0 +1,178 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Customer.master.cs" Inherits="Customer_Customer" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Sahayog Customer</title>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- 🔹 Content placeholder for page-specific head content -->
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #ffffff;
+        }
+
+        /* 🔹 Header */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px 30px;
+            background: linear-gradient(to right, #003366, #005599);
+            color: white;
+            animation: fadeInDown 1s ease-in-out;
+        }
+        .header img {
+            height: 80px;
+            width: 80px;
+            margin-right: 20px;
+            transition: transform 0.5s ease-in-out;
+        }
+        .header img:hover {
+            transform: rotate(360deg) scale(1.1);
+        }
+        .header h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            font-family: "Arial Rounded MT Bold";
+            animation: textGlow 2s infinite alternate;
+        }
+        .header .welcomeLabel {
+            margin-left: 20px;
+            font-size: 20px;
+            color: #ffcc66;
+        }
+
+        /* 🔹 Navbar */
+        .nav {
+            background-color: #ff6600;
+            text-align: center;
+            padding: 8px 0;
+        }
+        .nav .menuItem {
+            color: white;
+            text-decoration: none;
+            padding: 8px 20px;
+            margin: 0 6px;
+            font-size: 15px;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+            border-radius: 6px;
+        }
+        .nav .menuItem i {
+            margin-right: 6px;
+        }
+        .nav .menuItem:hover {
+            background: #e65c00;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+        }
+        .nav .menuItemSelected {
+            background: #cc5200;
+            border-radius: 6px;
+        }
+
+        /* 🔹 Content area */
+        .content {
+            padding: 20px 40px;
+            min-height: 500px;
+            animation: fadeIn 1.2s ease-in;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin: 20px;
+        }
+
+        /* 🔹 Footer marquee */
+        marquee {
+            color: #ffffff;
+            font-weight: bold;
+            height: 35px;
+            line-height: 35px;
+            background-color: #003366;
+            letter-spacing: 1px;
+        }
+
+        /* 🔹 Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes textGlow {
+            from { text-shadow: 0 0 5px #ffffff, 0 0 10px #ff6600; }
+            to { text-shadow: 0 0 10px #ffcc66, 0 0 20px #ff6600; }
+        }
+
+        /* 🔹 Image hover effect */
+        #Image1 {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        #Image1:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <form id="form2" runat="server">
+        <!-- 🔹 Header -->
+        <div class="header">
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/bachat.png" />
+            <h1>Sahayog Customer</h1>
+            <asp:Label ID="Label1" runat="server" CssClass="welcomeLabel" Text=""></asp:Label>
+        </div>
+
+        <!-- 🔹 Navigation -->
+        <div class="nav">
+            <asp:Menu ID="Menu2" runat="server"
+                Orientation="Horizontal"
+                RenderingMode="List"
+                BackColor="#FF6600"
+                ForeColor="White"
+                Font-Bold="true"
+                Font-Names="Arial, Helvetica, sans-serif"
+                Font-Size="Medium"
+                StaticMenuItemStyle-CssClass="menuItem"
+                Width="100%"
+                StaticSelectedStyle-CssClass="menuItemSelected">
+                <Items>
+                    <asp:MenuItem Text='<i class="fa fa-home"></i> Home' NavigateUrl="~/Customer/Home.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text='<i class="fa-solid fa-user"></i> My Profile' NavigateUrl="~/Customer/Edit Profile.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text='<i class="fa-solid fa-th-large"></i> Product Category' NavigateUrl="~/Customer/product.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text='<i class="fa-solid fa-shopping-cart"></i> Cart' NavigateUrl="~/Customer/Cart.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text='<i class="fa-solid fa-box"></i> My Order' NavigateUrl="~/Customer/My Order.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text='<i class="fa-solid fa-comment"></i> Feedback' NavigateUrl="~/Customer/Feedback.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text='<i class="fa-solid fa-right-from-bracket"></i> Logout' 
+                        NavigateUrl="~/Customer/Logout.aspx"></asp:MenuItem>
+                </Items>
+
+<StaticMenuItemStyle CssClass="menuItem"></StaticMenuItemStyle>
+
+<StaticSelectedStyle CssClass="menuItemSelected"></StaticSelectedStyle>
+            </asp:Menu>
+        </div>
+
+        <!-- 🔹 Page Content -->
+        <div class="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </div>
+
+        <!-- 🔹 Footer -->
+        <marquee behaviour="scroll" scrollamount="10">
+            Projected by: Shraddha Yewale
+        </marquee>
+    </form>
+</body>
+</html>

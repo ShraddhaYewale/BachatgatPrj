@@ -1,0 +1,158 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Member.master.cs" Inherits="Member_Member" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Sahayog - Member Portal</title>
+    <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
+
+    <!-- ✅ Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+    <style type="text/css">
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f9fb;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(90deg, #003366, #005599);
+            padding: 15px 30px;
+            color: white;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left img {
+            height: 60px;
+            margin-right: 15px;
+        }
+
+        .header-title {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .header-right {
+            background: #FF6600;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* Navbar */
+        .nav {
+            background: #FF6600;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 12px 0;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 18px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover {
+            background: #003366;
+            color: #FFD700;
+        }
+
+        /* FontAwesome icons spacing */
+        .fa {
+            margin-right: 6px;
+        }
+
+        /* Active menu */
+        .menuItemSelected {
+            background-color: #003366 !important;
+            color: #FFD700 !important;
+            font-weight: bold;
+        }
+
+        .content {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .footer {
+            margin-top: 30px;
+            background: #003366;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/bachat.png" />
+                <div class="header-title">Sahayog</div>
+            </div>
+            <div class="header-right">
+                Welcome, <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            </div>
+        </div>
+
+        <!-- Navigation with Font Awesome icons -->
+        <div class="nav">
+            <asp:Menu ID="Menu1" runat="server"
+                Orientation="Horizontal"
+                RenderingMode="Table"
+                BackColor="#FF6600"
+                ForeColor="White"
+                Font-Bold="true"
+                Font-Names="Arial, Helvetica, sans-serif"
+                Font-Size="Medium"
+                Width="100%"
+                StaticSelectedStyle-CssClass="menuItemSelected">
+                <Items>
+                    <asp:MenuItem Text='<i class="fa fa-home"></i> Home' NavigateUrl="~/Member/Home.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text='<i class="fa fa-user"></i> Update Profile' NavigateUrl="~/Member/EditMemberProfile.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text='<i class="fa fa-file-invoice-dollar"></i> Loan Application' NavigateUrl="~/Member/Loan Application.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text='<i class="fa fa-rotate-left"></i> Loan Return' NavigateUrl="~/Member/LoanReturn.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text='<i class="fa fa-money-bill-wave"></i> Withdrawl' NavigateUrl="~/Member/Withdrawl.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text='<i class="fa fa-sign-out-alt"></i> Logout' NavigateUrl="~/Member/Logout.aspx"></asp:MenuItem>
+                </Items>
+            </asp:Menu>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <marquee behaviour="Alternate" scrollamount="15">
+                Projected by: Shraddha Yewale
+            </marquee>
+        </div>
+    </form>
+</body>
+</html>

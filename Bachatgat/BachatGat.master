@@ -1,0 +1,246 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="BachatGat.master.cs" Inherits="Bachatgat_BachatGat" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Sahayog Bachatgat</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
+    <style type="text/css">
+        /* Reset and body */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, #003366, #005599);
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header img {
+            height: 50px;
+            width: 50px;
+            margin-right: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .header img:hover {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .header-user {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-weight: 600;
+        }
+
+        .header-user a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .header-user a:hover {
+            color: #ffcc00;
+            transform: scale(1.2);
+        }
+
+        /************** Responsive Header **************/
+        @media (max-width: 900px) {
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .header img {
+                height: 40px;
+                width: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+            }
+
+            .header-user {
+                margin-top: 10px;
+                font-size: 16px;
+                gap: 15px;
+            }
+
+            .header img {
+                height: 35px;
+                width: 35px;
+            }
+
+            .header h1 {
+                font-size: 16px;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            height: calc(100% - 70px);
+            background-color: #003366;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a i {
+            margin-right: 12px;
+        }
+
+        .sidebar a:hover {
+            background-color: #005599;
+            transform: translateX(5px);
+            border-left: 4px solid #ffcc00;
+        }
+
+        .sidebar a.active {
+            background-color: #004080;
+            border-left: 4px solid #ffcc00;
+        }
+
+        /* Main content */
+        .main {
+            margin-left: 240px;
+            padding: 100px 40px 40px 40px; /* top padding for header */
+            min-height: 600px;
+            background-color: #f4f6f9;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 12px;
+            background-color: #003366;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive Sidebar */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+            .sidebar a span {
+                display: none;
+            }
+            .main {
+                margin-left: 70px;
+                padding: 100px 20px 20px 20px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <!-- Header -->
+        <div class="header">
+            <div style="display:flex; align-items:center;">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/bachat.png" />
+                <h1>Sahayog Bachatgat</h1>
+            </div>
+
+            <div class="header-user">
+                <!-- Message Icon -->
+                <asp:HyperLink ID="hlMessage" runat="server" NavigateUrl="~/Bachatgat/BachatgatFeedback.aspx" ToolTip="Messages / Feedback">
+                    <i class="fa-solid fa-envelope"></i>
+                </asp:HyperLink>
+
+                <!-- User Name -->
+                <asp:Label ID="Label1" runat="server" Text="Guest"></asp:Label>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="Sidebar">
+            <asp:HyperLink ID="hlHome" runat="server" NavigateUrl="~/Bachatgat/Home.aspx" CssClass="active">
+                <i class="fa fa-home"></i> <span>Home</span>
+            </asp:HyperLink>
+
+            <asp:HyperLink ID="hlEditProfile" runat="server" NavigateUrl="~/Bachatgat/Edit Bachat Profile.aspx">
+                <i class="fa-solid fa-user-pen"></i> <span>Update Profile</span>
+            </asp:HyperLink>
+
+            <asp:HyperLink ID="hlPostProduct" runat="server" NavigateUrl="~/Bachatgat/Post Product.aspx">
+                <i class="fa-solid fa-box"></i> <span>Post Product</span>
+            </asp:HyperLink>
+
+            <asp:HyperLink ID="hlMyOrders" runat="server" NavigateUrl="~/Report/OrderDetails.aspx">
+                <i class="fa-solid fa-receipt"></i> <span>My Orders</span>
+            </asp:HyperLink>
+
+            <asp:HyperLink ID="hlFeedback" runat="server" NavigateUrl="~/Bachatgat/Get Feedback.aspx">
+                <i class="fa-solid fa-comment-dots"></i> <span>Get Feedback</span>
+            </asp:HyperLink>
+
+            <asp:HyperLink ID="hlLogout" runat="server" NavigateUrl="~/Bachatgat/Logout.aspx">
+                <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
+            </asp:HyperLink>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            Projected by: Shraddha Yewale
+        </footer>
+    </form>
+</body>
+</html>
