@@ -9,7 +9,7 @@ public partial class Bachatgat_BachatgatFeedback : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        // Nothing to do here for now
+        
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
